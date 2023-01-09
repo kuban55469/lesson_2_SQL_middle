@@ -1,0 +1,68 @@
+CREATE TABLE  country(
+    id BIGSERIAL NOT NULL PRIMARY KEY ,
+    name VARCHAR(50) NOT NULL ,
+    population INT NOT NULL
+);
+
+
+CREATE TABLE president(
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    country BIGINT REFERENCES country(id) ,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender VARCHAR(7) NOT NULL,
+    date_of_birth DATE NOT NULL ,
+    email VARCHAR(150)
+);
+DROP TABLE country CASCADE ;
+DROP TABLE president CASCADE ;
+
+
+SELECT * FROM country;
+SELECT * FROM president;
+
+INSERT INTO country(name, population)
+VALUES('Kyrgyzstan', 7000000),
+      ('Russia', 350000000),
+      ('USA', 500000000),
+      ('China', 1400000000),
+      ('Kazaxstan', 10000000);
+
+INSERT INTO president(first_name, last_name, gender, date_of_birth, email, country)
+VALUES ('Sadyr', 'Japarov', 'MALE', '1968-12-06', 'sadyr@gmail.com', 1),
+       ('Joe', 'Biden', 'MALE', '1940-04-30', 'joe@gmail.com', 3),
+       ('Rosa', 'Shakorova', 'FEMALE', '1980-10-18', 'rosa@gmail.com', 4),
+       ('Vladimir', 'Putin', 'MALE', '1955-07-16', 'putin@gmail.com', 2),
+       ('Joomart', 'Tokaev', 'MALE', '1959-10-26', 'joomart@gmail.com',5);
+
+CREATE TABLE car(
+    id BIGSERIAL NOT NULL PRIMARY KEY ,
+    model VARCHAR (50) NOT NULL,
+    date_of_issue DATE NOT NULL,
+    country BIGINT REFERENCES country(id) NOT NULL
+);
+
+CREATE TABLE driver(
+    id BIGSERIAL NOT NULL PRIMARY KEY ,
+    first_name VARCHAR (50) NOT NULL,
+    last_name VARCHAR (50) NOT NULL,
+    gender VARCHAR (7) NOT NULL,
+    country BIGINT REFERENCES country(id) NOT NULL
+);
+
+SELECT * FROM car;
+SELECT * FROM driver;
+
+INSERT INTO car(model, date_of_issue, country)
+VALUES ('Tesla','2020-01-01',3),
+       ('Lada','2018-01-01',2),
+       ('Kia','2022-01-01',4),
+       ('Nexia','2019-01-01',1),
+       ('Porter','2010-01-01',5);
+
+INSERT INTO driver(first_name, last_name, gender, country)
+VALUES ('Kuban', 'Kelsinbekov', 'MALE', 1),
+ ('Ales', 'Joe', 'MALE', 1),
+ ('Alecsey', 'Saratov', 'MALE', 1),
+ ('Yson', 'Asanov', 'MALE', 1),
+ ('Kid', 'Fil', 'FEMALE', 1);
