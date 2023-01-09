@@ -66,3 +66,95 @@ VALUES ('Kuban', 'Kelsinbekov', 'MALE', 1),
  ('Alecsey', 'Saratov', 'MALE', 1),
  ('Yson', 'Asanov', 'MALE', 1),
  ('Kid', 'Fil', 'FEMALE', 1);
+
+
+
+
+
+
+
+
+
+ Server [localhost]:
+ Database [postgres]:
+ Port [5432]:
+ Username [postgres]:
+ Password for user postgres:
+ psql (14.6)
+ WARNING: Console code page (866) differs from Windows code page (1251)
+          8-bit characters might not work correctly. See psql reference
+          page "Notes for Windows users" for details.
+ Type "help" for help.
+
+ postgres=# \d
+                 List of relations
+  Schema |       Name        |   Type   |  Owner
+ --------+-------------------+----------+----------
+  public | students          | table    | postgres
+  public | students_id_seq   | sequence | postgres
+  public | university        | table    | postgres
+  public | university_id_seq | sequence | postgres
+ (4 rows)
+
+
+ postgres=# \c terminal;
+ You are now connected to database "terminal" as user "postgres".
+ terminal=#
+ terminal=# \d
+                List of relations
+  Schema |      Name       |   Type   |  Owner
+ --------+-----------------+----------+----------
+  public | employee        | table    | postgres
+  public | employee_id_seq | sequence | postgres
+  public | job             | table    | postgres
+  public | job_id_seq      | sequence | postgres
+  public | person          | table    | postgres
+  public | person_id_seq   | sequence | postgres
+ (6 rows)
+
+
+ terminal=# job
+ terminal-# ;
+ ОШИБКА:  ошибка синтаксиса (примерное положение: "job")
+ LINE 1: job
+         ^
+ terminal=# SELECT * FROM job;
+  id |    name    | address
+ ----+------------+---------
+   1 | CODER      | BISHKEK
+   2 | Teacher    | Aksy
+   3 | Accountant | Sokuluk
+ (3 rows)
+
+
+ terminal=# SELECT * FROM employee;
+  id | first_name | last_name | gender | email
+ ----+------------+-----------+--------+-------
+ (0 rows)
+
+
+ terminal=# SELECT * FROM person;
+  id | first_name |  last_name  | gender | date_of_birth |      email
+ ----+------------+-------------+--------+---------------+-----------------
+   1 | Kuban      | Kelsinbekov | MALE   | 2002-12-10    |
+   2 | Masha      | Asanova     | FEMALE | 2000-09-11    |
+   3 | Medina     | Ilichbekova | FEMALE | 2013-12-09    | medina@mail.com
+ (3 rows)
+
+
+ terminal=# INSERT INTO employee (first_name, last_name, gender, date_of_brith)
+ terminal-# VALUES ('Ilim', 'Han', 'MALE', DATE '2003-12-04');
+ ОШИБКА:  столбец "date_of_brith" в таблице "employee" не существует
+ LINE 1: ...ERT INTO employee (first_name, last_name, gender, date_of_br...
+                                                              ^
+ terminal=# INSERT INTO employee (first_name, last_name, gender, email)
+ terminal-# VALUES ('Ilim', 'Han', 'MALE', 'ilim@gmail.com);
+ terminal'# ');
+ INSERT 0 1
+ terminal=# SELECT * FROM employee;
+  id | first_name | last_name | gender |      email
+ ----+------------+-----------+--------+------------------
+   1 | Ilim       | Han       | MALE   | ilim@gmail.com);+
+     |            |           |        |
+ (1 row)
+
